@@ -82,8 +82,28 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
     }
 }
 
+const getAllUsers = (req: Request, res: Response, next: NextFunction) => {
+    User.find()
+        .select('-password')
+        .exec()
+        .then((users) => {
+            res.status(200).json({
+                users,
+                count: users.length
+            })
+        })
+        .catch((error) => {
+            return res.status(500).json({
+                message: error.message,
+                error
+            })
+        })
+}
+
 export default {
     register,
     login,
     validateToken,
+    getAllUsers,
 }
+

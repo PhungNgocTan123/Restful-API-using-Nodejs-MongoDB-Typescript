@@ -10,5 +10,8 @@ router.post('/register', ValidateJoi(Shcemas.author.create), controller.register
 // Login
 router.post('/login', controller.login);
 
+//Get all users
+router.get('/getAllUsers', controller.getAllUsers);
+
 
 export = router;
